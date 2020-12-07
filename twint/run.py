@@ -80,15 +80,10 @@ class Twint:
                                                             headers=[("User-Agent", self.user_agent)])
                             self.feed, self.init = feed.MobileFav(response)
                             favorite_err_cnt += 1
-                            time.sleep(1)
                         if favorite_err_cnt == 5:
                             print("Favorite page could not be fetched")
-                    if not self.count % 40:
-                        time.sleep(5)
                 elif self.config.Followers or self.config.Following:
                     self.feed, self.init = feed.Follow(response)
-                    if not self.count % 40:
-                        time.sleep(5)
                 elif self.config.Profile or self.config.TwitterSearch:
                     try:
                         self.feed, self.init = feed.parse_tweets(self.config, response)
